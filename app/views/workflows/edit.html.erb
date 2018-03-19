@@ -136,12 +136,24 @@ $("a[data-expands]").click(function(e){
  * @since 1.0
  */
 $(document).ready(function () {
+
     /**
-     * Make workflow tables scrollable, the first column being fixed
+     * Make workflow tables scrollable, the first column being
+     * fixed - is also triggered, when the form was submitted
      */
     $("table.list").each(function () {
         fixateFirstColumn(this);
         styleFirstColumn(this);
+    });
+
+    /**
+     * Event handler for Submit - to remove the clones before
+     * submit the different workflow tables
+     */
+    $("#workflow_form").submit(function() {
+      $("table.clone").each(function(){
+        this.remove();
+      });
     });
 });
 
